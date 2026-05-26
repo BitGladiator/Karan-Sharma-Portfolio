@@ -1,0 +1,31 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Building Splitmate: Modern Expense Tracker using Flask Fundamentals",
+      "slug": "building-splitmate-modern-expense-tracker-using-flask-fundamentals",
+      "description": "How I built SplitMate - a Flask expense sharing app that finally solves the 'who owes what' problem when splitting bills with friends.",
+      "author": "Karan Sharma",
+      "isFeatured": true,
+      "image": "/blogs/splitmate.png"
+    },                            
+    {
+      "id": 2,
+      "title": "Why I Stopped Relying on Pingdom and Built My Own Monitoring Stack",
+      "slug": "why-i-stopped-relying-on-pingdom-and-built-my-own-monitoring-stack",
+      "description": "This monitoring system continuously checks your URLs, sends smart alerts, and provides beautiful dashboards to track uptime and performance.",
+      "author": "Karan Sharma",
+      "isFeatured": false,
+      "image": "/blogs/url-health-checker.png"
+    },
+    {
+      "id": 3,
+      "title": "Building a Lightning-Fast Distributed Image Processing Pipeline: Flask + Node.js + Cpp + Redis",
+      "slug": "building-a-lightning-fast-distributed-image-processing-pipeline-flask-nodejs-cpp-redis",
+      "description": "Learn architectural patterns used by the world’s largest tech companies.",
+      "author": "Karan Sharma",
+      "isFeatured": true,
+      "image": "/blogs/Image-process.png"
+    }
+  ]
+}

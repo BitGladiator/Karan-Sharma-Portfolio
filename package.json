@@ -1,27 +1,41 @@
 {
-  "name": "musicproj",
+  "name": "karansharmaportfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@types/three": "^0.184.1",
+    "clsx": "^2.1.1", 
+    "framer-motion": "^12.23.0",
+    "mini-svg-data-uri": "^1.4.4",
+    "motion": "^12.4.3",
+    "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.7"
+    "react-globe.gl": "^2.38.0",
+    "react-icons": "^5.5.0",
+    "react-simple-typewriter": "^5.0.1",
+    "simplex-noise": "^4.0.3",
+    "tailwind-merge": "^3.0.1",
+    "three": "^0.174.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
-    "@eslint/eslintrc": "^3"
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
