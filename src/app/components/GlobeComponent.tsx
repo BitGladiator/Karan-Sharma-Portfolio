@@ -60,16 +60,16 @@ const ringsData = [
 
 
 const pointsData = [
-  { lat: 32.7266, lng: 74.857, color: "#00ffff", altitude: 0.45, radius: 0.8 }, // Jammu, India (Main base)
-  { lat: 40.7128, lng: -74.006, color: "#ec4899", altitude: 0.35, radius: 0.5 }, // New York
-  { lat: 51.5074, lng: -0.1278, color: "#3b82f6", altitude: 0.38, radius: 0.5 }, // London
-  { lat: 35.6762, lng: 139.6503, color: "#10b981", altitude: 0.4, radius: 0.5 }, // Tokyo
-  { lat: -33.8688, lng: 151.2093, color: "#f59e0b", altitude: 0.42, radius: 0.5 }, // Sydney
-  { lat: 37.7749, lng: -122.4194, color: "#a855f7", altitude: 0.38, radius: 0.5 }, // San Francisco
-  { lat: 1.3521, lng: 103.8198, color: "#10b981", altitude: 0.32, radius: 0.4 }, // Singapore
-  { lat: -23.5505, lng: -46.6333, color: "#f59e0b", altitude: 0.3, radius: 0.4 }, // São Paulo
-  { lat: 30.0444, lng: 31.2357, color: "#ec4899", altitude: 0.28, radius: 0.4 }, // Cairo
-  { lat: -26.2041, lng: 28.0473, color: "#3b82f6", altitude: 0.34, radius: 0.4 }, // Johannesburg
+  { lat: 32.7266, lng: 74.857, color: "#00ffff", altitude: 0.45, radius: 0.8 }, 
+  { lat: 40.7128, lng: -74.006, color: "#ec4899", altitude: 0.35, radius: 0.5 }, 
+  { lat: 51.5074, lng: -0.1278, color: "#3b82f6", altitude: 0.38, radius: 0.5 }, 
+  { lat: 35.6762, lng: 139.6503, color: "#10b981", altitude: 0.4, radius: 0.5 }, 
+  { lat: -33.8688, lng: 151.2093, color: "#f59e0b", altitude: 0.42, radius: 0.5 }, 
+  { lat: 37.7749, lng: -122.4194, color: "#a855f7", altitude: 0.38, radius: 0.5 }, 
+  { lat: 1.3521, lng: 103.8198, color: "#10b981", altitude: 0.32, radius: 0.4 }, 
+  { lat: -23.5505, lng: -46.6333, color: "#f59e0b", altitude: 0.3, radius: 0.4 }, 
+  { lat: 30.0444, lng: 31.2357, color: "#ec4899", altitude: 0.28, radius: 0.4 }, 
+  { lat: -26.2041, lng: 28.0473, color: "#3b82f6", altitude: 0.34, radius: 0.4 }, 
 ];
 
 export default function GlobeComponent() {

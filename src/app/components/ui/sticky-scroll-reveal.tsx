@@ -56,7 +56,7 @@ export const StickyScroll = ({
               key={item.title + index}
               className="my-32 transition-all duration-500 ease-in-out"
             >
-              {/* Title */}
+             
               <motion.h2
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
@@ -69,7 +69,7 @@ export const StickyScroll = ({
                 {item.title}
               </motion.h2>
 
-              {/* GitHub button — sits right below the title, distinct from badge chips */}
+          
               {item.github && (
                 <motion.a
                   href={item.github}
@@ -104,7 +104,7 @@ export const StickyScroll = ({
                 {item.description}
               </motion.div>
 
-              {/* Divider */}
+            
               <motion.hr
                 initial={{ width: 0 }}
                 animate={{
@@ -119,7 +119,7 @@ export const StickyScroll = ({
         </div>
       </div>
 
-      {/* Right sticky visual */}
+
       <motion.div
         animate={{
           background: linearGradients[activeCard % linearGradients.length],

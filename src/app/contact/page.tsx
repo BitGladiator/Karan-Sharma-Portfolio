@@ -8,7 +8,7 @@ import { MdEmail, MdPhone } from "react-icons/md";
 import emailjs from "@emailjs/browser";
 import { Spotlight } from "../components/ui/Spotlight";
 
-// Load globe client-side only (WebGL / no SSR)
+
 const GlobeComponent = dynamic(() => import("../components/GlobeComponent"), {
   ssr: false,
   loading: () => (

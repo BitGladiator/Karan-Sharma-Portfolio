@@ -53,7 +53,7 @@ function Herosection() {
           applications and deploying them with modern DevOps tools.
         </p>
 
-        {/* Bubble Tech Icons with Tooltips */}
+
         <div className="mt-10 flex flex-wrap justify-center gap-6 relative">
           {techIcons.map((tech, index) => (
             <div

@@ -11,12 +11,12 @@ import React, {
   ElementType,
 } from "react";
 
-// --- Context Setup ---
+
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
 >(undefined);
 
-// --- Card Container ---
+
 export const CardContainer = ({
   children,
   className,
@@ -84,7 +84,7 @@ export const CardContainer = ({
   );
 };
 
-// --- Card Body ---
+
 export const CardBody = ({
   children,
   className,
@@ -104,7 +104,7 @@ export const CardBody = ({
   );
 };
 
-// --- Card Item ---
+
 export const CardItem = ({
   as: Tag = "div",
   children,
@@ -153,7 +153,7 @@ export const CardItem = ({
   );
 };
 
-// --- Hook to Use Context ---
+
 export const useMouseEnter = () => {
   const context = useContext(MouseEnterContext);
   if (!context) {

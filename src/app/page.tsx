@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import TerminalLoader from "./components/TerminalLoader"; 
+import TerminalLoader from "./components/TerminalLoader";
 
 import Herosection from "./components/HeroSection";
-// import FeaturedCourses from "./components/FeaturedCourses";
+
 import WhyChooseUs from "./components/WhyChooseUs";
 import MusicSchoolTestimonials from "./components/TestimonialCards";
 import UpcomingWebinars from "./components/UpcomingWebinars";
@@ -15,21 +15,16 @@ export default function Home() {
 
   return (
     <>
-      {/* {!loaded && <TerminalLoader onComplete={() => setLoaded(true)} />}  */}
+      <main className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02]">
+        <Herosection />
+        <Instructors />
+        <MusicSchoolTestimonials />
+        <WhyChooseUs />
 
-      {/* {loaded && (  */}
-        <main className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02]">
-          <Herosection />
-          <Instructors />
-          <MusicSchoolTestimonials />
-          <WhyChooseUs />
-       
-          <UpcomingWebinars />
-         
-          <Footer />
-        </main>
-       
-       {/* } */}
+        <UpcomingWebinars />
+
+        <Footer />
+      </main>
     </>
   );
 }

@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.unsplash.com"], // Add Unsplash as an allowed domain
+    domains: ["images.unsplash.com"], 
   },
 };
 
