@@ -1,40 +1,130 @@
+import Link from "next/link";
+import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+
+const navLinks = [
+  { label: "Home", href: "#" },
+  { label: "About", href: "#" },
+  { label: "Projects", href: "#" },
+  { label: "Contact", href: "#" },
+];
+
+const socialLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/bitgladiator",
+    icon: <FiGithub />,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/KaranCodeMind",
+    icon: <FiLinkedin />,
+  },
+  {
+    label: "Twitter",
+    href: "https://twitter.com/KaranSharma1020",
+    icon: <FiTwitter />,
+  },
+];
+
 function Footer() {
   return (
-    <footer className="bg-zinc-950 text-green-400 font-mono px-6 py-10 border-t border-green-800">
-      <div className="max-w-6xl mx-auto space-y-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <p className="text-green-500">~$ whoami</p>
-            <p className="text-sm mt-2 text-green-300">
-              I'm a developer who crafts web experiences. From frontend flair to backend logic — I ship fast, clean code.
+    <footer className="relative bg-black text-white overflow-hidden">
+      {/* Glow accent */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 opacity-10 blur-[100px] pointer-events-none" />
+
+      {/* Top border gradient */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+          {/* About */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-white">Karan Sharma</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              MERN Stack Developer & Cloud Enthusiast — I craft scalable web
+              experiences and ship fast, clean code.
             </p>
           </div>
-          <div>
-            <p className="text-green-500">~$ ls /quick-links</p>
-            <ul className="text-sm mt-2 space-y-1">
-              <li><a href="#" className="hover:text-white">Home</a></li>
-              <li><a href="#" className="hover:text-white">About</a></li>
-              <li><a href="#" className="hover:text-white">Projects</a></li>
-              <li><a href="#" className="hover:text-white">Contact</a></li>
+
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+              Quick Links
+            </h3>
+            <ul className="space-y-2">
+              {navLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-slate-400 hover:text-white transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          <div>
-            <p className="text-green-500">~$ curl socials.me</p>
-            <ul className="text-sm mt-2 space-y-1">
-              <li><a href="https://github.com/bitgladiator" className="hover:text-white">GitHub</a></li>
-              <li><a href="https://linkedin.com/in/KaranCodeMind" className="hover:text-white">LinkedIn</a></li>
-              <li><a href="https://twitter.com/KaranSharma1020" className="hover:text-white">Twitter</a></li>
+
+          {/* Socials */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+              Connect
+            </h3>
+            <ul className="space-y-3">
+              {socialLinks.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200 group"
+                  >
+                    <span className="text-indigo-400 group-hover:text-white transition-colors duration-200">
+                      {s.icon}
+                    </span>
+                    {s.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-          <div>
-            <p className="text-green-500">~$ ping me</p>
-            <p className="text-sm mt-2 text-green-300">Jammu,Jammu & Kashmir</p>
-            <p className="text-sm text-green-300">Email: ks10204080@gmail.com</p>
-            <p className="text-sm text-green-300">Phone: +91 6005925938</p>
+
+          {/* Contact */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+              Get In Touch
+            </h3>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <FiMapPin className="text-indigo-400 flex-shrink-0" />
+                Jammu, Jammu & Kashmir
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <FiMail className="text-indigo-400 flex-shrink-0" />
+                <a
+                  href="mailto:ks10204080@gmail.com"
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  ks10204080@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <FiPhone className="text-indigo-400 flex-shrink-0" />
+                +91 6005925938
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="pt-6 text-center text-xs text-green-600 border-t border-green-800 mt-6">
-          © 2025 ~ Built with 💻 by You
+
+        {/* Bottom bar */}
+        <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+          <p>© 2025 Karan Sharma. All rights reserved.</p>
+          <p className="text-slate-700">
+            Built with{" "}
+            <span className="text-indigo-500">Next.js</span> &{" "}
+            <span className="text-cyan-500">TypeScript</span>
+          </p>
         </div>
       </div>
     </footer>

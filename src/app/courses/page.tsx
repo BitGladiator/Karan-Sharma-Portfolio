@@ -18,22 +18,22 @@ function Page() {
             <CardBody className="relative group/card w-auto sm:w-[30rem] h-auto p-6 rounded-xl border transition-all duration-300 border-white/10 bg-white/5 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_30px_rgba(0,255,255,0.15)]">
 
            
-              <CardItem translateZ="50" className="text-2xl font-semibold text-white mb-2 tracking-tight">
+              <CardItem translateZ={50} className="text-2xl font-semibold text-white mb-2 tracking-tight">
                 {blog.title}
               </CardItem>
 
              
-              <CardItem as="p" translateZ="40" className="text-sm text-cyan-400 mb-1">
+              <CardItem as="p" translateZ={40} className="text-sm text-cyan-400 mb-1">
                 By {blog.author} — <span className="text-neutral-400">{blog.slug}</span>
               </CardItem>
 
            
-              <CardItem as="p" translateZ="60" className="text-sm text-neutral-300 max-w-sm leading-relaxed mb-4">
+              <CardItem as="p" translateZ={60} className="text-sm text-neutral-300 max-w-sm leading-relaxed mb-4">
                 {blog.description}
               </CardItem>
 
 
-              <CardItem translateZ="100" className="w-full">
+              <CardItem translateZ={100} className="w-full">
                 <Image
                   src={blog.image}
                   height={1000}

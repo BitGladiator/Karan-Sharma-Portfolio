@@ -127,12 +127,8 @@ function Projects() {
             From full-stack web apps to distributed systems — here&apos;s a slice of what I&apos;ve built.
           </p>
         </motion.div>
-        <div className="relative rounded-[1.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(255,255,255,0.05)]">
-          <div className="flex items-center gap-2 px-4 py-2 bg-white/10 border-b border-white/10">
-            <span className="w-3 h-3 rounded-full bg-red-500" />
-            <span className="w-3 h-3 rounded-full bg-yellow-400" />
-            <span className="w-3 h-3 rounded-full bg-green-500" />
-          </div>
+        <div className="relative rounded-[1.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(99,102,241,0.08)]">
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
           <div className="p-4 md:p-6">
             <StickyScroll content={projectContent} />
           </div>
