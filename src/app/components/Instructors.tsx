@@ -92,25 +92,42 @@ function ProgressLine() {
     offset: ['start 0.85', 'end 0.15'],
   });
 
-
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 55,
     damping: 28,
     restDelta: 0.001,
   });
 
+  // Calculate top position of the indicator dot (0% to 100% dynamically)
+  const indicatorPercent = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const smoothPercent = useSpring(indicatorPercent, {
+    stiffness: 55,
+    damping: 28,
+    restDelta: 0.001,
+  });
+  const indicatorTop = useTransform(smoothPercent, (v) => `${v}%`);
+
   return (
     <div
       ref={ref}
-      className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 z-0"
+      className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 z-0"
     >
-
-      <div className="absolute inset-0 bg-white/[0.06] rounded-full" />
-     
+      {/* Background track line */}
+      <div className="absolute inset-0 bg-white/[0.08] rounded-full" />
+      
+      {/* Active scrolling progress line */}
       <motion.div
         style={{ scaleY, originY: 0 }}
-        className="absolute inset-0 bg-gradient-to-b from-violet-500 via-cyan-400 to-emerald-400 rounded-full"
+        className="absolute inset-0 bg-gradient-to-b from-indigo-500 via-purple-500 to-cyan-400 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]"
       />
+
+      {/* Pulsing glow dot at the tip of the scrolling progress */}
+      <motion.div
+        style={{ top: indicatorTop }}
+        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-cyan-400 border-2 border-black z-10 shadow-[0_0_12px_#22d3ee,0_0_24px_rgba(34,211,238,0.6)]"
+      >
+        <div className="absolute inset-0 rounded-full bg-cyan-400 animate-ping opacity-75" />
+      </motion.div>
     </div>
   );
 }
@@ -123,131 +140,112 @@ function TimelineCard({
   item: (typeof timeline)[0];
   index: number;
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px 0px' });
+  const cardRef = useRef(null);
   const isLeft = index % 2 === 0;
   const { Icon } = item;
 
   return (
     <div
-      ref={ref}
-      className={`relative flex flex-col md:flex-row items-start md:items-center ${
+      ref={cardRef}
+      style={{ perspective: 1000 }}
+      className={`relative flex flex-col md:flex-row items-stretch min-h-[160px] ${
         isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
       }`}
     >
-     
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={isInView ? { scale: 1, opacity: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.05, type: 'spring', stiffness: 160, damping: 18 }}
-        className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20"
-      >
-      
+      {/* Milestone node with SVG Icon */}
+      <div className="absolute left-6 md:left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20">
         <motion.div
-          animate={{ scale: [1, 1.7, 1], opacity: [0.6, 0, 0.6] }}
-          transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut', delay: index * 0.5 }}
-          style={{ background: item.glow }}
-          className="absolute inset-0 rounded-full"
-        />
-       
-        <div
-          className={`relative w-5 h-5 rounded-full bg-gradient-to-br ${item.color} border-[2.5px] border-black shadow-lg`}
-          style={{ boxShadow: `0 0 14px ${item.glow}` }}
-        />
-      </motion.div>
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true, margin: "-40px 0px" }}
+          transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.1 }}
+          className={`relative w-10 h-10 md:w-12 md:h-12 rounded-full bg-neutral-950 border-2 ${item.border} flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110`}
+          style={{ 
+            boxShadow: `0 0 20px ${item.glow}`,
+          }}
+        >
+          <Icon className="w-5 h-5 text-white" />
+        </motion.div>
+      </div>
 
-     
+      {/* Column 1: Year & Tag (Desktop only) */}
       <div
-        className={`hidden md:flex w-[calc(50%-2.5rem)] ${
+        className={`hidden md:flex md:w-1/2 items-center ${
           isLeft ? 'justify-end pr-12' : 'justify-start pl-12'
         }`}
       >
         <motion.div
-          initial={{ opacity: 0, x: isLeft ? 24 : -24 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+          initial={{ opacity: 0, x: isLeft ? 30 : -30, scale: 0.9 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-40px 0px" }}
+          transition={{ type: "spring", stiffness: 70, damping: 16, delay: 0.05 }}
           className="flex flex-col items-center gap-2"
         >
           <span
-            className={`text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r ${item.color} tabular-nums`}
+            className={`text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r ${item.color} tabular-nums`}
           >
             {item.year}
           </span>
           <span
-            className={`text-[10px] font-semibold uppercase tracking-widest px-3 py-0.5 rounded-full border ${item.border} ${item.bg} text-white/60`}
+            className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${item.border} ${item.bg} text-white/70`}
           >
             {item.tag}
           </span>
         </motion.div>
       </div>
 
-     
+      {/* Column 2: Card Content (Desktop & Mobile) */}
       <div
-        className={`ml-14 md:ml-0 w-full md:w-[calc(50%-2.5rem)] ${
-          isLeft ? 'md:pl-12' : 'md:pr-12'
+        className={`w-full md:w-1/2 flex items-center ${
+          isLeft ? 'pl-16 md:pl-12 md:pr-0' : 'pl-16 md:pr-12 md:pl-0'
         }`}
       >
         <motion.div
-          initial={{ opacity: 0, y: 36, filter: 'blur(6px)' }}
-          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          initial={{ opacity: 0, y: 50, rotateX: 15, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-40px 0px" }}
           transition={{
-            duration: 0.7,
-            delay: 0.15,
-            ease: [0.22, 1, 0.36, 1],
+            type: "spring",
+            stiffness: 70,
+            damping: 16,
+            mass: 0.8
           }}
           whileHover={{
-            y: -5,
-            boxShadow: `0 16px 40px -12px ${item.glow}`,
+            y: -6,
+            borderColor: 'rgba(255, 255, 255, 0.15)',
+            boxShadow: `0 20px 40px -15px ${item.glow}`,
             transition: { duration: 0.25, ease: 'easeOut' },
           }}
-          className={`group relative p-6 rounded-2xl border ${item.border} bg-white/[0.04] backdrop-blur-xl overflow-hidden cursor-default`}
+          className="group relative w-full p-6 rounded-2xl border border-neutral-800/80 bg-neutral-950/40 backdrop-blur-xl overflow-hidden cursor-default transition-all duration-300"
         >
-        
+          {/* Subtle hover gradient background */}
           <div
-            className={`absolute inset-0 opacity-0 group-hover:opacity-[0.07] transition-opacity duration-500 bg-gradient-to-br ${item.color} rounded-2xl pointer-events-none`}
+            className={`absolute inset-0 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 bg-gradient-to-br ${item.color} rounded-2xl pointer-events-none`}
           />
 
-    
           <div className="relative z-10 flex items-center justify-between mb-3">
-            <div className="flex items-center gap-3">
-           
-              <div
-                className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${item.bg} border ${item.border}`}
-              >
-                <Icon
-                  className="w-4 h-4"
-                  style={{ color: item.colorHex }}
-                />
-              </div>
-              <h3 className="text-white font-bold text-base md:text-lg leading-snug">
-                {item.title}
-              </h3>
-            </div>
-
-           
+            <h3 className="text-white font-extrabold text-lg md:text-xl leading-snug tracking-tight">
+              {item.title}
+            </h3>
+            
+            {/* Tag (Mobile only) */}
             <span
-              className={`md:hidden text-[10px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full border ${item.border} ${item.bg} text-white/60 flex-shrink-0 ml-2`}
+              className={`md:hidden text-[9px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${item.border} ${item.bg} text-white/70 flex-shrink-0 ml-2`}
             >
               {item.tag}
             </span>
           </div>
 
-        
+          {/* Year (Mobile only) */}
           <span
-            className={`md:hidden inline-block mb-2 text-base font-black bg-clip-text text-transparent bg-gradient-to-r ${item.color}`}
+            className={`md:hidden inline-block mb-2 text-sm font-extrabold bg-clip-text text-transparent bg-gradient-to-r ${item.color}`}
           >
             {item.year}
           </span>
 
-   
           <p className="relative z-10 text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
             {item.description}
           </p>
-
-      
-          <div
-            className={`relative z-10 mt-5 h-[1.5px] w-0 group-hover:w-full transition-[width] duration-500 ease-out bg-gradient-to-r ${item.color} rounded-full`}
-          />
         </motion.div>
       </div>
     </div>
