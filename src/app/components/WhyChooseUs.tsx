@@ -21,7 +21,7 @@ const badgeClass = `
 
 const projectContent = [
   {
-    title: "Standup Tracker — AI-Powered GitHub Reporter",
+    title: "Standup Tracker: AI-Powered GitHub Reporter",
     github: "https://github.com/BitGladiator",
     description: (
       <div className="mt-4 space-y-3 text-sm">
@@ -41,7 +41,7 @@ const projectContent = [
     ),
   },
   {
-    title: "Distributed Flash Sale System — 100k+ Peak Users",
+    title: "Distributed Flash Sale System : 100k+ Peak Users",
     github: "https://github.com/BitGladiator",
     description: (
       <div className="mt-4 space-y-3 text-sm">
@@ -62,7 +62,7 @@ const projectContent = [
     ),
   },
   {
-    title: "Vistagram — Microservices Social Media Platform",
+    title: "Vistagram : Microservices Social Media Platform",
     github: "https://github.com/BitGladiator",
     description: (
       <div className="mt-4 space-y-3 text-sm">
@@ -81,7 +81,7 @@ const projectContent = [
     ),
   },
   {
-    title: "DriftBox — Distributed Cloud Storage Platform",
+    title: "DriftBox : Distributed Cloud Storage Platform",
     github: "https://github.com/BitGladiator",
     description: (
       <div className="mt-4 space-y-3 text-sm">
