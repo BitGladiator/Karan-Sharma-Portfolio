@@ -23,7 +23,6 @@ import {
 } from "react-icons/hi2";
 
 
-/* Explicit types so Icon is optional on items */
 interface SkillItem {
   name: string;
   level: string;

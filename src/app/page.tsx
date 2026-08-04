@@ -1,30 +1,23 @@
 "use client";
-import React, { useState } from "react";
-import TerminalLoader from "./components/TerminalLoader";
-
-import Herosection from "./components/HeroSection";
-
-import WhyChooseUs from "./components/WhyChooseUs";
-import MusicSchoolTestimonials from "./components/TestimonialCards";
-import UpcomingWebinars from "./components/UpcomingWebinars";
-import Instructors from "./components/Instructors";
-import Footer from "./components/Footer";
+import React from "react";
+import RefinedHero from "./components/RefinedHero";
+import AboutMe from "./components/AboutMe";
+import ExperienceSection from "./components/ExperienceSection";
+import ProjectsSection from "./components/ProjectsSection";
+import ContactSection from "./components/ContactSection";
 
 export default function Home() {
-  const [loaded, setLoaded] = useState(false);
-
   return (
-    <>
-      <main className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02]">
-        <Herosection />
-        <Instructors />
-        <MusicSchoolTestimonials />
-        <WhyChooseUs />
+    <main className="min-h-screen bg-[#070709] text-white antialiased">
+      <RefinedHero />
 
-        <UpcomingWebinars />
+      <AboutMe />
 
-        <Footer />
-      </main>
-    </>
+      <ExperienceSection />
+
+      <ProjectsSection />
+
+      <ContactSection />
+    </main>
   );
 }
