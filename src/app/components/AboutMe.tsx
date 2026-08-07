@@ -8,10 +8,8 @@ export default function AboutMe() {
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen bg-[#070709] text-white flex flex-col justify-center px-6 lg:px-24 py-20 overflow-hidden select-none"
+      className="relative w-full min-h-screen text-white flex flex-col justify-center px-6 lg:px-24 py-20 overflow-hidden select-none"
     >
-
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[300px] bg-indigo-600/5 blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto w-full z-10 space-y-16">
 

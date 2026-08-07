@@ -82,11 +82,8 @@ export default function RefinedHero() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen bg-[#070709] text-white flex flex-col justify-between items-center overflow-hidden px-6 lg:px-16 py-8 select-none"
+      className="relative w-full min-h-screen text-white flex flex-col justify-between items-center overflow-hidden px-6 lg:px-16 py-8 select-none"
     >
-
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,45,60,0.15)_0%,rgba(7,7,9,1)_70%)] pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-indigo-500/10 via-purple-500/10 to-transparent blur-[120px] pointer-events-none" />
 
 
       <nav aria-label="Sidebar navigation" className="hidden lg:flex flex-col justify-center fixed left-10 top-0 bottom-0 z-50 space-y-6">

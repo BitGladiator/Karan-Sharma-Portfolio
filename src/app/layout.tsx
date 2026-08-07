@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import GlobalBackground from "./components/GlobalBackground";
 
 export const metadata: Metadata = {
   title: "Karan Sharma Portfolio",
@@ -18,13 +19,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body
-        className="antialiased bg-[#070709] text-white selection:bg-white selection:text-black"
+        className="antialiased text-white selection:bg-white selection:text-black"
         suppressHydrationWarning
       >
-        <div className="relative w-full flex items-center justify-center">
+        <GlobalBackground />
+        <div className="relative w-full flex items-center justify-center z-10">
           <Navbar />
         </div>
-        {children}
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

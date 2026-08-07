@@ -8,10 +8,8 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative w-full min-h-screen bg-[#070709] text-white flex flex-col justify-between px-6 lg:px-24 py-16 overflow-hidden select-none"
+      className="relative w-full min-h-screen text-white flex flex-col justify-between px-6 lg:px-24 py-16 overflow-hidden select-none"
     >
-
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-indigo-600/5 blur-[160px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto w-full z-10">
 

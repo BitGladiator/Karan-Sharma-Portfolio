@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub } from "react-icons/fi";
 import projectsData from "../data/projects.json";
@@ -10,29 +10,68 @@ export default function ProjectsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const currentProject = projects[activeIndex];
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isAnimating = useRef(false);
+  const isHovered = useRef(false);
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
+
+  const goTo = useCallback(
+    (next: number) => {
+      if (isAnimating.current) return;
+      if (next < 0 || next >= projects.length) return;
+      isAnimating.current = true;
+      setActiveIndex(next);
+      setTimeout(() => {
+        isAnimating.current = false;
+      }, 750);
+    },
+    [projects.length]
+  );
 
 
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (e.deltaY > 30) {
-      if (activeIndex < projects.length - 1) {
-        setActiveIndex((prev) => prev + 1);
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (!isHovered.current) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.deltaY > 30) {
+        goTo(activeIndexRef.current + 1);
+      } else if (e.deltaY < -30) {
+        goTo(activeIndexRef.current - 1);
       }
-    } else if (e.deltaY < -30) {
-      if (activeIndex > 0) {
-        setActiveIndex((prev) => prev - 1);
-      }
-    }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [goTo]);
+
+  const contentVariants = {
+    enter: { opacity: 0, y: 18 },
+    center: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -18 },
+  };
+
+  const cardVariants = {
+    enter: { opacity: 0, scale: 0.97, y: 20 },
+    center: { opacity: 1, scale: 1, y: 0 },
+    exit: { opacity: 0, scale: 0.97, y: -20 },
+  };
+
+  const smoothTransition = {
+    duration: 0.65,
+    ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
   };
 
   return (
     <section
       id="projects"
-      className="relative w-full min-h-screen bg-[#070709] text-white flex flex-col justify-center px-6 lg:px-24 py-20 overflow-hidden select-none"
+      className="relative w-full min-h-screen text-white flex flex-col justify-center px-6 lg:px-24 py-20 overflow-hidden select-none"
     >
-
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[400px] bg-indigo-600/5 blur-[160px] pointer-events-none" />
-
       <div className="max-w-6xl mx-auto w-full z-10">
+
 
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-baseline">
@@ -45,19 +84,16 @@ export default function ProjectsSection() {
           </div>
 
 
-          <div className="flex items-center space-x-2">
-            {projects.map((p, idx) => (
-              <button
-                key={p.id}
-                onClick={() => setActiveIndex(idx)}
-                className={`px-3 py-1 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer ${
+          <div className="flex items-center gap-2">
+            {projects.map((_, idx) => (
+              <span
+                key={idx}
+                className={`block rounded-full transition-all duration-500 ${
                   activeIndex === idx
-                    ? "bg-white text-black font-bold shadow-md"
-                    : "bg-[#14151f] text-slate-400 hover:text-white border border-neutral-800"
+                    ? "w-5 h-1.5 bg-white"
+                    : "w-1.5 h-1.5 bg-neutral-600"
                 }`}
-              >
-                0{idx + 1}
-              </button>
+              />
             ))}
           </div>
         </div>
@@ -66,22 +102,31 @@ export default function ProjectsSection() {
 
         <div
           ref={scrollRef}
-          onWheel={handleWheel}
-          className="rounded-3xl border border-neutral-800/80 bg-[#0c0d14]/90 p-8 sm:p-12 shadow-2xl backdrop-blur-md relative overflow-hidden"
+          onMouseEnter={() => { isHovered.current = true; }}
+          onMouseLeave={() => { isHovered.current = false; }}
+          className="rounded-3xl border border-neutral-800/80 bg-[#0c0d14]/90 p-8 sm:p-12 shadow-2xl backdrop-blur-md relative overflow-hidden cursor-ns-resize"
+          title="Scroll to browse projects"
         >
+
+          <div className="absolute top-4 right-6 text-[10px] font-mono text-neutral-600 tracking-widest uppercase select-none pointer-events-none">
+            scroll ↕
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center min-h-[380px]">
+
 
             <div className="lg:col-span-6 flex flex-col justify-center min-h-[340px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentProject.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  variants={contentVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={smoothTransition}
                   className="space-y-6"
                 >
-                  <div className="text-xs font-mono text-slate-400 font-semibold tracking-widest">
+                  <div className="text-xs font-mono text-neutral-500 font-semibold tracking-widest">
                     [ 0{activeIndex + 1} / 0{projects.length} ]
                   </div>
 
@@ -93,7 +138,6 @@ export default function ProjectsSection() {
                     {currentProject.description}
                   </p>
 
-
                   <div className="flex flex-wrap gap-2.5 pt-1">
                     {currentProject.tech.map((t) => (
                       <span
@@ -104,7 +148,6 @@ export default function ProjectsSection() {
                       </span>
                     ))}
                   </div>
-
 
                   <div className="pt-2">
                     <a
@@ -126,10 +169,11 @@ export default function ProjectsSection() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentProject.id}
-                  initial={{ opacity: 0, y: 40, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -40, scale: 0.96 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  variants={cardVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ ...smoothTransition, duration: 0.7 }}
                   className="w-full"
                 >
                   <div className="w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl border border-neutral-800/90 bg-[#0d0e15] p-3 shadow-2xl relative overflow-hidden group">
@@ -144,7 +188,6 @@ export default function ProjectsSection() {
                         </span>
                       </div>
 
-
                       <div className="my-auto z-10 flex flex-col items-center text-center p-4">
                         <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md flex items-center justify-center text-white text-2xl font-bold mb-3 shadow-2xl">
                           {currentProject.title.charAt(0)}
@@ -156,7 +199,6 @@ export default function ProjectsSection() {
                           {currentProject.tech.slice(0, 3).join(" • ")}
                         </p>
                       </div>
-
 
                       <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 z-10 pt-2 border-t border-white/5">
                         <span>Status: Production</span>
