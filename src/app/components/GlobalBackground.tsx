@@ -24,31 +24,54 @@ export default function GlobalBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      {/* Base dark background */}
-      <div className="absolute inset-0 bg-[#070709]" />
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
 
-      {/* Fixed ambient corner glows */}
-      <div className="absolute top-0 left-0 w-[450px] h-[320px] bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.06)_0%,transparent_65%)]" />
-      <div className="absolute top-0 right-0 w-[450px] h-[320px] bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.05)_0%,transparent_65%)]" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[220px] bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.04)_0%,transparent_70%)]" />
+      {/* Base — near-black */}
+      <div className="absolute inset-0 bg-[#06070b]" />
 
-      {/* Cursor-following white glow */}
-      <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full"
+      {/* Top-right silver glow */}
+      <div
+        className="absolute"
         style={{
+          top: "-20%",
+          right: "-15%",
+          width: "65vw",
+          height: "65vw",
           background:
-            "radial-gradient(circle, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.045) 40%, transparent 70%)",
+            "radial-gradient(ellipse at top right, rgba(180,190,210,0.18) 0%, rgba(150,165,190,0.07) 45%, transparent 70%)",
+          filter: "blur(70px)",
+        }}
+      />
+
+
+      <div
+        className="absolute"
+        style={{
+          bottom: "-20%",
+          left: "-15%",
+          width: "75vw",
+          height: "75vw",
+          background:
+            "radial-gradient(ellipse at bottom left, rgba(180,190,215,0.20) 0%, rgba(150,165,195,0.07) 45%, transparent 70%)",
+          filter: "blur(30px)",
+        }}
+      />
+
+
+      <motion.div
+        className="absolute rounded-full"
+        style={{
+          width: "600px",
+          height: "600px",
+          background:
+            "radial-gradient(circle, rgba(200,210,230,0.05) 0%, transparent 70%)",
           filter: "blur(80px)",
           top: -300,
           left: -300,
         }}
         initial={{ x: -9999, y: -9999 }}
-        animate={{
-          x: mousePos.x,
-          y: mousePos.y,
-        }}
-        transition={{ type: "spring", stiffness: 120, damping: 25, mass: 0.5 }}
+        animate={{ x: mousePos.x, y: mousePos.y }}
+        transition={{ type: "spring", stiffness: 100, damping: 28, mass: 0.6 }}
       />
     </div>
   );

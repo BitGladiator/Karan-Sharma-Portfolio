@@ -58,10 +58,7 @@ export default function AboutMe() {
           >
             <div className="w-full max-w-md aspect-[4/5] rounded-2xl border border-neutral-800 bg-[#0d0e14]/90 p-3 shadow-2xl relative overflow-hidden group">
 
-              <div className="w-full h-full rounded-xl bg-gradient-to-br from-indigo-950/60 via-purple-950/40 to-slate-950 border border-white/10 flex flex-col items-center justify-center relative overflow-hidden p-6">
-
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(99,102,241,0.15),transparent_70%)]" />
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl" />
+              <div className="w-full h-full rounded-xl bg-[#0d0e14] border border-white/10 flex flex-col items-center justify-center relative overflow-hidden p-6">
 
 
                 <div className="w-20 h-20 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center text-3xl font-extrabold text-white shadow-xl mb-4 group-hover:scale-105 transition-transform duration-300">

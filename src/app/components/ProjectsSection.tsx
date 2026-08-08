@@ -177,7 +177,7 @@ export default function ProjectsSection() {
                   className="w-full"
                 >
                   <div className="w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl border border-neutral-800/90 bg-[#0d0e15] p-3 shadow-2xl relative overflow-hidden group">
-                    <div className="w-full h-full rounded-xl bg-gradient-to-br from-indigo-950/40 via-purple-950/30 to-[#07070a] border border-white/10 p-6 flex flex-col justify-between relative overflow-hidden">
+                    <div className="w-full h-full rounded-xl bg-[#0d0e15] border border-white/10 p-6 flex flex-col justify-between relative overflow-hidden">
 
                       <div className="flex items-center space-x-2 z-10">
                         <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
