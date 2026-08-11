@@ -6,7 +6,8 @@
         "slug": "standup-tracker",
         "description": "Full-stack platform to automate daily standups by extracting GitHub commits and PRs into structured reports. 5-agent AI scoring pipeline using Groq (Llama 3) under 2 seconds.",
         "tech": ["Groq", "Llama 3", "Redis", "Nginx", "GitHub API"],
-        "github": "https://github.com/BitGladiator",
+        "github": "https://github.com/BitGladiator/standup-tracker",
+        "liveDemo": "https://standup-tracker-xi.vercel.app/",
         "year": "Ongoing",
         "isFeatured": true
       },
@@ -16,7 +17,7 @@
         "slug": "distributed-flash-sale",
         "description": "High-concurrency backend for 100k+ peak users with sub-200ms latency. Redis Lua atomic inventory, Kafka async pipeline, Saga pattern rollbacks, and virtual waiting rooms.",
         "tech": ["Kafka", "Redis Lua", "PostgreSQL", "Saga Pattern", "UUID Idempotency"],
-        "github": "https://github.com/BitGladiator",
+        "github": "https://github.com/BitGladiator/flash-sale-system",
         "year": "2026",
         "isFeatured": true
       },
@@ -26,7 +27,7 @@
         "slug": "vistagram",
         "description": "Microservices-based social media platform with modular auth, feeds, media, and notifications. Deployed with Docker and Kubernetes.",
         "tech": ["Microservices", "Docker", "Kubernetes", "Node.js"],
-        "github": "https://github.com/BitGladiator",
+        "github": "https://github.com/BitGladiator/Vistagram",
         "year": "2026",
         "isFeatured": true
       },
@@ -36,7 +37,7 @@
         "slug": "driftbox",
         "description": "5-service microservices cloud storage with NGINX gateway, SHA-256 chunk-based uploads via MinIO, versioned metadata in PostgreSQL, and real-time sync via RabbitMQ and WebSockets.",
         "tech": ["MinIO", "RabbitMQ", "WebSockets", "PostgreSQL", "NGINX"],
-        "github": "https://github.com/BitGladiator",
+        "github": "https://github.com/BitGladiator/Driftbox",
         "year": "2025",
         "isFeatured": true
       }

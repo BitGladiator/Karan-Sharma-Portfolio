@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiGithub } from "react-icons/fi";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 import projectsData from "../data/projects.json";
 
 export default function ProjectsSection() {
@@ -149,7 +149,7 @@ export default function ProjectsSection() {
                     ))}
                   </div>
 
-                  <div className="pt-2">
+                  <div className="pt-2 flex flex-wrap gap-3">
                     <a
                       href={currentProject.github}
                       target="_blank"
@@ -159,6 +159,17 @@ export default function ProjectsSection() {
                       <FiGithub className="text-base" />
                       <span>View Code</span>
                     </a>
+                    {(currentProject as { liveDemo?: string }).liveDemo && (
+                      <a
+                        href={(currentProject as { liveDemo?: string }).liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-2.5 px-6 py-3 rounded-full bg-[#181923] border border-neutral-700/80 text-white hover:border-white text-xs sm:text-sm font-medium transition-all duration-300 shadow-md hover:shadow-white/5 active:scale-95 cursor-pointer"
+                      >
+                        <FiExternalLink className="text-base" />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               </AnimatePresence>
